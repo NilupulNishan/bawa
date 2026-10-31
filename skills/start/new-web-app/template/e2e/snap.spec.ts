@@ -10,22 +10,22 @@ const accent = process.env.SNAP_ACCENT ? `&accent=${process.env.SNAP_ACCENT}` : 
 mkdirSync("shots", { recursive: true });
 
 for (const mode of ["light", "dark"] as const) {
-  for (const route of routes.filter((id) => !only || only.includes(id))) {
-    test(`${route} ${mode}`, async ({ browser }) => {
-      const context = await browser.newContext({ colorScheme: mode, viewport: { width: 1280, height: 800 } });
-      const page = await context.newPage();
-      await page.goto(`/?store=snap&seed=1${accent}#/${route}`);
-      await page.locator("[data-ready]").waitFor();
-      // Select the first row so the detail column shows content.
-      const firstRow = page.getByRole("option").first();
-      if (await firstRow.count()) await firstRow.click();
-      await page.evaluate(() => document.fonts.ready);
-      const name = `shots/${route}-${mode}`;
-      await page.screenshot({ path: `${name}.png`, animations: "disabled", caret: "hide" });
-      writeFileSync(`${name}-layout.json`, JSON.stringify(await page.evaluate(measureLayout), null, 2));
-      await context.close();
-    });
-  }
+  test.describe(mode, () => {
+    test.use({ colorScheme: mode });
+    for (const route of routes.filter((id) => !only || only.includes(id))) {
+      test(route, async ({ page }) => {
+        await page.goto(`./?store=snap&seed=1${accent}#/${route}`);
+        await page.locator("[data-ready]").waitFor();
+        // Select the first row so the detail column shows content.
+        const firstRow = page.getByRole("option").first();
+        if (await firstRow.count()) await firstRow.click();
+        await page.evaluate(() => document.fonts.ready);
+        const name = `shots/${route}-${mode}`;
+        await page.screenshot({ path: `${name}.png`, animations: "disabled", caret: "hide" });
+        writeFileSync(`${name}-layout.json`, JSON.stringify(await page.evaluate(measureLayout), null, 2));
+      });
+    }
+  });
 }
 
 /** Runs in the page: the box of every [data-grid-area] and its probes. */

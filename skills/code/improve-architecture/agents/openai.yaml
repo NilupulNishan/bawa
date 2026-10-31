@@ -1,0 +1,3 @@
+interface:
+  display_name: "Improve Architecture"
+  short_description: "Find hot spots and refactor in safe steps"

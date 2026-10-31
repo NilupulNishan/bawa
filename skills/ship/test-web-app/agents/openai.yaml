@@ -1,0 +1,3 @@
+interface:
+  display_name: "Test a Web App"
+  short_description: "Unit tests, Playwright self-test, accessibility"

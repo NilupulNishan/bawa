@@ -1,0 +1,5 @@
+interface:
+  display_name: "Build Any Web App"
+  short_description: "Pick the next step for a web app"
+policy:
+  allow_implicit_invocation: false

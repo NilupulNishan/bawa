@@ -1,0 +1,50 @@
+{
+  "name": "bawa",
+  "version": "1.0.0",
+  "description": "Build any web app: skills to research, clone, plan, scaffold, design, integrate, optimize, test, and deploy local-first web apps with React and TypeScript.",
+  "author": {
+    "name": "Nilupul Nishan",
+    "url": "https://github.com/NilupulNishan"
+  },
+  "repository": "https://github.com/NilupulNishan/bawa",
+  "license": "MIT",
+  "keywords": [
+    "web",
+    "react",
+    "typescript",
+    "vite",
+    "indexeddb",
+    "local-first",
+    "pwa",
+    "playwright",
+    "clone",
+    "performance",
+    "skills",
+    "architecture",
+    "ux",
+    "accessibility",
+    "design-system",
+    "grid"
+  ],
+  "skills": [
+    "./skills/start/bawa",
+    "./skills/plan/research",
+    "./skills/plan/clone",
+    "./skills/start/app-brief",
+    "./skills/plan/user-stories",
+    "./skills/start/new-web-app",
+    "./skills/code/typescript-react",
+    "./skills/code/web-integrations",
+    "./skills/code/performance",
+    "./skills/code/improve-architecture",
+    "./skills/design/ux-design",
+    "./skills/design/web-design",
+    "./skills/design/design-system",
+    "./skills/design/layout-grid",
+    "./skills/design/app-icon",
+    "./skills/ship/build-and-verify",
+    "./skills/ship/test-web-app",
+    "./skills/ship/improve-loop",
+    "./skills/ship/deploy"
+  ]
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "App Icon"
+  short_description: "One SVG icon rendered to every web size"

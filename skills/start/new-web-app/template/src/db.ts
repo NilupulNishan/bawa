@@ -21,7 +21,9 @@ export const db = new Dexie(isTestStore ? `__APP_NAME__-${storeName}` : "__APP_N
 };
 
 // Add a new version for every schema change. Give new fields a default where
-// they are read, so data saved by older versions keeps loading.
+// they are read, so data saved by older versions keeps loading. Index only
+// fields you sort or query on. IndexedDB cannot index booleans: store 0 or 1
+// for a flag you query with where().
 db.version(1).stores({
-  items: "id, createdAt, starred",
+  items: "id, createdAt",
 });

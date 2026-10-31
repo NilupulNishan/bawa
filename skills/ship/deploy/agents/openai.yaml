@@ -1,0 +1,3 @@
+interface:
+  display_name: "Deploy"
+  short_description: "Put the app online and check the live build"

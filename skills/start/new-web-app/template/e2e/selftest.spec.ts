@@ -17,14 +17,14 @@ function watchErrors(page: Page) {
 test("every page loads with no errors", async ({ page }) => {
   const errors = watchErrors(page);
   for (const route of routes) {
-    await page.goto(`/?store=selftest&seed=1#/${route}`);
+    await page.goto(`./?store=selftest&seed=1#/${route}`);
     await page.locator("[data-ready]").waitFor();
   }
   expect(errors).toEqual([]);
 });
 
 test("add an item, rename it, and it survives a reload", async ({ page }) => {
-  await page.goto("/?store=selftest#/all");
+  await page.goto("./?store=selftest#/all");
   await page.getByRole("button", { name: "Add Item" }).first().click();
   const title = page.getByLabel("Title");
   await expect(title).toBeFocused();
@@ -36,14 +36,14 @@ test("add an item, rename it, and it survives a reload", async ({ page }) => {
 });
 
 test("N adds an item outside text fields", async ({ page }) => {
-  await page.goto("/?store=selftest#/all");
+  await page.goto("./?store=selftest#/all");
   await page.locator("[data-ready]").waitFor();
   await page.keyboard.press("n");
   await expect(page.getByLabel("Title")).toHaveValue("New Item");
 });
 
 test("star an item and it shows on Starred", async ({ page }) => {
-  await page.goto("/?store=selftest#/all");
+  await page.goto("./?store=selftest#/all");
   await page.getByRole("button", { name: "Add Item" }).first().click();
   await page.getByLabel("Title").fill("Star me");
   await page.getByRole("button", { name: "Star", exact: true }).click();
@@ -52,7 +52,7 @@ test("star an item and it shows on Starred", async ({ page }) => {
 });
 
 test("delete moves selection to the next row, and Undo brings it back", async ({ page }) => {
-  await page.goto("/?store=selftest&seed=1#/all");
+  await page.goto("./?store=selftest&seed=1#/all");
   const rows = page.getByRole("option");
   await rows.first().click();
   const first = (await rows.first().textContent())!;
@@ -64,7 +64,7 @@ test("delete moves selection to the next row, and Undo brings it back", async ({
 });
 
 test("the real database is never seeded", async ({ page }) => {
-  await page.goto("/?seed=1#/all");
+  await page.goto("./?seed=1#/all");
   await page.locator("[data-ready]").waitFor();
   await expect(page.getByRole("heading", { name: "No Items" })).toBeVisible();
 });

@@ -63,9 +63,18 @@ if (missing.length) writeFileSync(ignorePath, theirs.join("\n").replace(/\n*$/, 
 })(dest);
 
 const run = (command) => execSync(command, { cwd: dest, stdio: "inherit" });
+// Installs fail now and then on a slow network. One retry fixes most.
+const runWithRetry = (command) => {
+  try {
+    run(command);
+  } catch {
+    console.log(`retrying: ${command}`);
+    run(command);
+  }
+};
 if (install) {
-  run("npm install");
-  run("npx playwright install chromium");
+  runWithRetry("npm install");
+  runWithRetry("npx playwright install chromium");
 }
 if (!existsSync(join(dest, ".git"))) run("git init -q");
 run("git add -A");

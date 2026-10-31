@@ -1,0 +1,27 @@
+{
+  "name": "bawa",
+  "owner": {
+    "name": "Nilupul Nishan",
+    "url": "https://github.com/NilupulNishan"
+  },
+  "description": "Build any web app. Agent skills for local-first web apps with React and TypeScript.",
+  "plugins": [
+    {
+      "name": "bawa",
+      "source": "./",
+      "description": "Build any web app: skills to research, clone, plan, scaffold, design, integrate, optimize, test, and deploy local-first web apps with React and TypeScript.",
+      "category": "development",
+      "keywords": [
+        "web",
+        "react",
+        "typescript",
+        "vite",
+        "local-first",
+        "pwa",
+        "playwright",
+        "clone",
+        "skills"
+      ]
+    }
+  ]
+}
