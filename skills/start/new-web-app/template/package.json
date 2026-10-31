@@ -1,0 +1,33 @@
+{
+  "name": "__APP_NAME__",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "selftest": "playwright test e2e/selftest.spec.ts",
+    "snap": "playwright test e2e/snap.spec.ts",
+    "grid": "node tools/grid-lint.mjs && node tools/check-layout.mjs shots",
+    "icons": "node tools/make-icons.mjs",
+    "check": "npm test && npm run selftest && npm run snap && npm run grid"
+  },
+  "dependencies": {
+    "dexie": "^4.4.7",
+    "dexie-react-hooks": "^4.4.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

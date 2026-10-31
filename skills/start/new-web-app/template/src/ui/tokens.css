@@ -1,0 +1,102 @@
+/* Design tokens. Views use these variables, never raw colors, radii, or
+   durations. Rules for which token to use when: design/DESIGN-SYSTEM.md
+   (design-system skill). Light and dark follow the system through
+   light-dark(); Playwright switches them with colorScheme. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Spacing: a 4 px grid (layout-grid skill). */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-xxl: 24px;
+  --space-section: 32px;
+  --space-margin: 20px;
+
+  /* Fixed layout widths. */
+  --sidebar-width: 240px;
+  --list-width: 360px;
+  --content-width: 640px;
+
+  /* Radii: inner radius = outer radius - inset. */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 999px;
+
+  /* Type: the system font of each platform. */
+  --font-sans: system-ui, -apple-system, "Segoe UI Variable Text", "Segoe UI", Roboto, sans-serif;
+  --text-sm: 0.8125rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.5rem;
+  --leading: 1.4;
+
+  /* Surfaces and text. */
+  --bg: light-dark(#f5f5f7, #1c1c1e);
+  --surface: light-dark(#ffffff, #2c2c2e);
+  --sidebar: light-dark(#ebebef, #242426);
+  --hover: light-dark(rgb(0 0 0 / 0.05), rgb(255 255 255 / 0.07));
+  --hairline: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.12));
+  --text: light-dark(#1d1d1f, #f5f5f7);
+  --text-secondary: light-dark(#5f5f66, #a8a8ae);
+  --danger: light-dark(#c4262e, #ff7b7b);
+  --shadow: 0 8px 24px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.5));
+
+  /* Motion. Every transition uses these, so reduced motion applies everywhere. */
+  --duration-quick: 120ms;
+  --duration-ui: 200ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Accents: --accent fills buttons and selection (white text on it passes
+   4.5:1), --accent-text colors text on normal surfaces, --on-accent is text
+   on an accent fill. */
+[data-accent="blue"] {
+  --accent: light-dark(#0a64d8, #1f6fe0);
+  --accent-text: light-dark(#0a55b8, #6aadff);
+  --on-accent: #ffffff;
+}
+[data-accent="purple"] {
+  --accent: light-dark(#6d3bd8, #7448e0);
+  --accent-text: light-dark(#5b2fc0, #b49cff);
+  --on-accent: #ffffff;
+}
+[data-accent="pink"] {
+  --accent: light-dark(#c01c68, #c8296f);
+  --accent-text: light-dark(#a8175a, #f78ab8);
+  --on-accent: #ffffff;
+}
+[data-accent="orange"] {
+  --accent: light-dark(#b04a0c, #b8520f);
+  --accent-text: light-dark(#9a400a, #ffab66);
+  --on-accent: #ffffff;
+}
+[data-accent="green"] {
+  --accent: light-dark(#1a7f37, #1f7a38);
+  --accent-text: light-dark(#176f30, #5fd07f);
+  --on-accent: #ffffff;
+}
+[data-accent="graphite"] {
+  --accent: light-dark(#4b5260, #5a616e);
+  --accent-text: light-dark(#3a404b, #c4c8d0);
+  --on-accent: #ffffff;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --hairline: light-dark(rgb(0 0 0 / 0.4), rgb(255 255 255 / 0.45));
+    --text-secondary: light-dark(#3a3a3f, #d4d4d8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-quick: 0ms;
+    --duration-ui: 0ms;
+  }
+}

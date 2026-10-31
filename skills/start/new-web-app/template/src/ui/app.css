@@ -1,0 +1,331 @@
+/* Layout and parts. Values come from tokens.css. tools/grid-lint.mjs fails
+   on any px number here that is not 0, 1, 2, or a multiple of 4. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: var(--text-md) / var(--leading) var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Three columns: sidebar, list, detail. */
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) var(--list-width) 1fr;
+  height: 100vh;
+}
+.shell.settings-open {
+  grid-template-columns: var(--sidebar-width) 1fr;
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--sidebar);
+  border-right: 1px solid var(--hairline);
+}
+.sidebar-title {
+  margin: 0;
+  padding: var(--space-sm);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--duration-quick) var(--ease);
+}
+.nav-link:hover {
+  background: var(--hover);
+}
+.nav-link[aria-current="page"] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.nav-link .icon {
+  color: var(--accent-text);
+}
+.nav-link[aria-current="page"] .icon {
+  color: var(--on-accent);
+}
+.nav-count {
+  margin-left: auto;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+.sidebar-footer {
+  margin-top: auto;
+}
+
+/* List column */
+.list {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--hairline);
+}
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--hairline);
+}
+.list-header h1 {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+.rows {
+  margin: 0;
+  padding: var(--space-sm);
+  overflow-y: auto;
+  list-style: none;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  text-align: left;
+  cursor: default;
+}
+.row:hover {
+  background: var(--hover);
+}
+.row[aria-selected="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.row-title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.row .icon {
+  color: var(--accent-text);
+}
+.row[aria-selected="true"] .icon {
+  color: var(--on-accent);
+}
+
+/* Detail column and Settings */
+.detail,
+.page {
+  min-width: 0;
+  overflow-y: auto;
+  padding: var(--space-margin);
+}
+.detail-body,
+.page-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: var(--content-width);
+}
+.page h1 {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.field-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.input {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.input-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+textarea.input {
+  min-height: 160px;
+  resize: vertical;
+}
+.actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Cards: Settings sections */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.card h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+.hint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--text-sm);
+}
+.swatch-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+}
+.swatch[aria-checked="true"] .swatch-dot {
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--accent);
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition: background var(--duration-quick) var(--ease);
+}
+.button:hover {
+  background: var(--hover);
+}
+.button.primary {
+  border-color: transparent;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.button.danger {
+  color: var(--danger);
+}
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--accent-text);
+}
+.icon-button:hover {
+  background: var(--hover);
+}
+
+/* Empty states */
+.empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-section);
+  text-align: center;
+  color: var(--text-secondary);
+}
+.empty h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+  color: var(--text);
+}
+.empty p {
+  margin: 0 0 var(--space-sm);
+}
+
+/* Undo toast */
+.toast {
+  position: fixed;
+  bottom: var(--space-xxl);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: var(--shadow);
+  translate: -50% 0;
+  animation: toast-in var(--duration-ui) var(--ease);
+}
+.toast .button {
+  border-color: transparent;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    translate: -50% 8px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
